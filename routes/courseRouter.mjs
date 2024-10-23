@@ -2,12 +2,16 @@ import { Router } from "express"
 
 const courseRouter = Router();
 
-courseRouter.get('./courses/purchases', (request, response) => {
-
+courseRouter.get('/purchases', (request, response) => {
+    response.json({
+        message: 'course purchase endpoint.'
+    })
 })
 
-courseRouter.post('./courses/preview', (request, response) => {
-
+courseRouter.post('/preview', (request, response) => {
+    response.json({
+        message: 'course preview endpoint.'
+    })
 })
 
 export {courseRouter}
