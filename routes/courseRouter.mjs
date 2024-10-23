@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-const courseRouter = Router;
+const courseRouter = Router();
 
 courseRouter.get('./courses/purchases', (request, response) => {
 
