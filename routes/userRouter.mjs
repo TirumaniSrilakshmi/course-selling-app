@@ -1,5 +1,7 @@
 import { Router } from "express"
+import { UserModel } from "../db.mjs";
 const userRouter = Router();
+
 
 userRouter.post('/signup', (request, response) => {
     response.json({

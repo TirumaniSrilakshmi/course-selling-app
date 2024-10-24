@@ -1,4 +1,4 @@
-import express from 'express'
+import express from 'express';
 import {userRouter} from './routes/userRouter.mjs';
 import {courseRouter} from './routes/courseRouter.mjs';
 import { adminRouter } from './routes/adminRouter.mjs'; 

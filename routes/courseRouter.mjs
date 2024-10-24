@@ -1,4 +1,5 @@
 import { Router } from "express"
+import { CourseModel } from "../db.mjs";
 
 const courseRouter = Router();
 

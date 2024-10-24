@@ -1,7 +1,7 @@
 // admin signup, login, add course, delete course, course content
 
 import { response, Router } from "express";
-
+import { AdminModel } from "../db.mjs";
 const adminRouter = Router();
 
 adminRouter.post('/signup', (request, response) => {
