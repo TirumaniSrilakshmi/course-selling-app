@@ -16,13 +16,14 @@ adminRouter.post('/signin', (request, response) => {
     })
 })
 
-adminRouter.post('/add', (request, response) => {
+// /api/v1/course/course shouldn't be there, it's /api/v1/course
+adminRouter.post('/', (request, response) => {
     response.json({
         message: 'admin add courses endpoint.'
     })
 })
 
-adminRouter.post('/delete', (request, response) => {
+adminRouter.put('/', (request, response) => {
     response.json({
         message: 'admin delete courses endpoint.'
     })
