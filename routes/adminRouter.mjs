@@ -103,6 +103,8 @@ adminRouter.post('/course', adminMiddleware, async (request, response) => {
 })
 
 adminRouter.put('/course', (request, response) => {
+    const adminId = request.adminId
+
     response.json({
         message: 'admin delete courses endpoint.'
     })
