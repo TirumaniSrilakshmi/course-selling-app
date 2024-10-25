@@ -106,7 +106,7 @@ adminRouter.post('/course', adminMiddleware, async (request, response) => {
 })
 
 //admin edit course
-adminRouter.put('/course', async (request, response) => {
+adminRouter.put('/course', adminMiddleware, async (request, response) => {
     const adminId = request.adminId;
 
     const courseSchema = z.object({
