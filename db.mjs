@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-mongoose.connect('mongodb+srv://harsha:8aWLslToAKzB2jKN@cluster.imuhp.mongodb.net/course-app-practice')
-console.log('db connected...')
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
