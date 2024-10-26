@@ -1,8 +1,9 @@
-import { Router } from "express"
-import { UserModel } from "../db.mjs";
+import { response, Router } from "express"
+import { CourseModel, PurchaseModel, UserModel } from "../db.mjs";
 import bcrypt from 'bcrypt';
 import { z } from 'zod';
 import jwt from 'jsonwebtoken';
+import { userMiddleware } from "../middlewares/usermiddleware.mjs";
 const userRouter = Router();
 
 userRouter.post('/signup', async (request, response) => {
@@ -73,10 +74,53 @@ userRouter.post('/signin', async (request, response) => {
     }
 })
 
-userRouter.get('/purchases', (request, response) => {
-    response.json({
-        message: 'user purchases endpoint.'
-    })
+userRouter.post('/purchase', userMiddleware, (request, response) => {
+    const userId = request.userId;
+    const courseId = request.headers.courseId;
+    try {
+        const purchase = PurchaseModel.create({
+            user: userId,
+            course: courseId
+        })
+        response.status(200).json({
+            message: 'User purchased the course.',
+            courseId: courseId,
+        })
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({
+            message: 'Internal server error.'
+        })
+    }
+})
+
+userRouter.get('/preview', async (request, response) => {
+    try {
+        const courses = await CourseModel.find({})
+        response.json({
+            courses: courses
+        })
+    } catch (error) {
+        console.log(error)
+        response.status(500).json({
+            message: 'Internal server error.'
+        })
+    }
+})
+
+userRouter.get('/purchased', userMiddleware, async (request, response) => {
+    const userId = request.userId;
+    try {
+        const purchasedCourses = await PurchaseModel.find({ userId })
+        response.status(200).json({
+            purchased: purchasedCourses
+        })
+    } catch (error) {
+        console.log(error)
+        response.status(500).json({
+            error: error
+        })
+    }
 })
 
 export { userRouter };
